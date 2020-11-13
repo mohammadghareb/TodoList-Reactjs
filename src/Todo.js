@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import uuid from "uuid";
 import  Css from './todo.css'
 
-
 class Todo extends Component {
   constructor(props) {
     super(props);
@@ -10,7 +9,7 @@ class Todo extends Component {
     this.input = React.createRef();
     this.state = {
       list: [],
-     
+      isEditable: null,
     };
   }
 
@@ -55,6 +54,34 @@ class Todo extends Component {
     localStorage.setItem("list", JSON.stringify(listValue));
   };
 
+  submitForm = (e) => {
+    e.preventDefault();
+    const inputValue = e.target.input.value;
+    this.setState({ list: [...this.state.list, inputValue] }, () => {
+      window.localStorage.setItem("list", JSON.stringify(this.state.list));
+    });
+  };
+
+  edit = (index) => {
+    this.setState({ isEditable: index });
+  };
+
+  updateForm = (e, id) => {
+    e.preventDefault();
+    const Items = {
+      id: id,
+      value: e.target.input.value,
+    };
+
+    const { list, isEditable } = this.state;
+    console.log(isEditable);
+    const newData = [...list]; //cloning state data
+    newData[isEditable] = Items;
+    this.setState({ list: newData }, () => {
+      window.localStorage.setItem("list", JSON.stringify(this.state.list));
+    });
+    this.setState({ isEditable: null });
+  };
 
   render() {
     const { list, isEditable } = this.state;
@@ -83,8 +110,25 @@ class Todo extends Component {
                   >
                     Delete
                   </button>
-                 
-                  
+                  <button
+                    className="button"
+                    type="button"
+                    onClick={() => this.edit(index, item.id)}
+                  >
+                    Edit
+                  </button>
+                  <div
+                    style={{
+                      display: `${isEditable !== index ? "none" : "block"}`,
+                    }}
+                  >
+                    <form onSubmit={(e) => this.updateForm(e, item.id)}>
+                      <input type="text" name="input" />
+                      <button className="button" type="submit">
+                        update
+                      </button>
+                    </form>
+                  </div>
                 </li>
               );
             })}
