@@ -87,7 +87,7 @@ class Todo extends Component {
     const { list, isEditable } = this.state;
 
     return (
-      <div className="main-container">
+      <div className="main-container" >
         <h1>TodoList App</h1>
         <hr />
         <div className="container">
@@ -98,7 +98,7 @@ class Todo extends Component {
           <ol>
             {this.state.list.map((item, index) => {
               return (
-                <li key={item.id}>
+                <li className="li-con" key={item.id}>
                   {" "}
                   {item.value}
                   <button

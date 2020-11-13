@@ -1,5 +1,7 @@
 body{
-  background-color: cadetblue;
+  background-color: #fff;
+  background-image: url(./ToDoList_1920x1080.jpg);
+
 }
 h1{
   font-size: 38px;
@@ -18,7 +20,8 @@ input[type=text] {
 }
 
 .button {
-  background-color: #ddd;
+  background-color: #0d0;
+  font-weight: bolder;
   border: none;
   color: black;
   padding: 10px 20px;
@@ -28,24 +31,29 @@ input[type=text] {
   margin: 4px 2px;
   /* cursor: pointer; */
   border-radius: 16px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Roboto ;
   margin-left: 22px;
 }
 
 .container{
-  background-color: antiquewhite;
+  background-color: #f1f1f1 ;
   border-style: hidden;
-  border-radius: 15px;
-  padding:18px;
+  border-radius: 300px;
+  padding: 18px;
+  max-width: 1000px;
+  margin: auto;
   text-align: center;
   box-shadow: 0 8px 6px -6px black;
-  
- 
-  
+}
+.li-con{
+  list-style-type: none;
 }
 @media screen and (max-width:900px){
 
     .main-contianer{
+      font-family: Roboto ;
+      font-weight: bolder;
+
       display: flex;
       flex-wrap: wrap;
       flex-direction: column;
